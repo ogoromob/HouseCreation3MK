@@ -16,15 +16,15 @@
     :root {
       --gold: #C9A84C;
       --gold-light: #E8C96D;
-      --brown: #6B3A2A;
-      --brown-dark: #3D1F12;
-      --beige: #F5EDD8;
-      --beige-dark: #EAD9B5;
-      --cream: #FBF7EE;
+      --brown: #8B4A3A;
+      --brown-dark: #4A2A1A;
+      --beige: #FAF5E8;
+      --beige-dark: #F0E4CC;
+      --cream: #FFFEF9;
       --red-dark: #8B2020;
-      --black: #1A1008;
-      --text-dark: #2C1A0E;
-      --text-light: #7A6050;
+      --black: #2A1810;
+      --text-dark: #3A2518;
+      --text-light: #6B5545;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
@@ -70,7 +70,14 @@
     .logo {
       font-family: 'Playfair Display', serif;
       color: var(--gold); font-size: 1.3rem; line-height: 1.2;
-      text-decoration: none;
+      text-decoration: none; position: relative;
+    }
+    .logo::before {
+      content: '3MK';
+      position: absolute; top: -15px; right: -20px;
+      font-size: 0.5rem; color: rgba(201,168,76,0.3);
+      font-weight: 900; letter-spacing: 2px;
+      transform: rotate(-15deg);
     }
     .logo span { display: block; font-size: 0.6rem; color: var(--beige); letter-spacing: 3px; font-family: 'Poppins', sans-serif; }
     nav { display: flex; gap: 6px; align-items: center; }
@@ -105,6 +112,34 @@
       background: none; border: none; padding: 4px;
     }
     .hamburger span { width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: all 0.3s; }
+
+    .header-carousel {
+      position: absolute; top: 70px; left: 0; right: 0; 
+      background: rgba(61,31,18,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 12px 0; z-index: 999;
+      overflow: hidden;
+    }
+    .header-carousel-track {
+      display: flex; animation: headerCarousel 20s linear infinite;
+      width: max-content;
+    }
+    .header-carousel-item {
+      flex: 0 0 auto; width: 120px; height: 80px; margin: 0 8px;
+      border-radius: 12px; overflow: hidden; cursor: pointer;
+      transition: all 0.3s; border: 2px solid transparent;
+    }
+    .header-carousel-item:hover {
+      border-color: var(--gold); transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(201,168,76,0.4);
+    }
+    .header-carousel-item img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    @keyframes headerCarousel {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
     /* ===== MOBILE NAV ===== */
     .mobile-nav {
@@ -465,6 +500,65 @@
     .badge-youtube { background: rgba(255,0,0,0.2); color: #FF6B6B; }
     .badge-youtube:hover { background: #FF0000; color: white; }
 
+    /* ===== FORMATIONS ===== */
+    #formations { background: var(--beige); }
+    .formations-grid {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+    }
+    .formation-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08); transition: all 0.3s;
+      position: relative;
+    }
+    .formation-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+    .formation-img {
+      position: relative; height: 200px; overflow: hidden;
+    }
+    .formation-img img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+    }
+    .formation-card:hover .formation-img img { transform: scale(1.05); }
+    .formation-level {
+      position: absolute; top: 15px; right: 15px;
+      background: var(--gold); color: var(--brown-dark);
+      padding: 5px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 700;
+    }
+    .formation-content { padding: 25px; }
+    .formation-content h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem;
+      color: var(--brown-dark); margin-bottom: 12px;
+    }
+    .formation-content p {
+      color: var(--text-light); line-height: 1.6; margin-bottom: 15px; font-size: 0.9rem;
+    }
+    .formation-points {
+      list-style: none; margin-bottom: 20px;
+    }
+    .formation-points li {
+      color: var(--text-dark); font-size: 0.85rem; margin-bottom: 6px;
+      padding-left: 20px; position: relative;
+    }
+    .formation-points li::before {
+      content: '✓'; position: absolute; left: 0; color: var(--gold);
+      font-weight: 700;
+    }
+    .formation-info {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 20px; padding: 12px 0; border-top: 1px solid var(--beige-dark);
+    }
+    .duration { color: var(--text-light); font-size: 0.8rem; }
+    .price {
+      color: var(--gold); font-weight: 700; font-size: 1.1rem;
+    }
+    .btn-formation {
+      width: 100%; background: var(--brown-dark); color: white; border: none;
+      padding: 12px 20px; border-radius: 12px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s; font-size: 0.9rem;
+    }
+    .btn-formation:hover { background: #25D366; transform: scale(1.02); }
+
     /* ===== CONTACT ===== */
     #contact { background: var(--brown-dark); color: white; }
     .contact-inner {
@@ -588,6 +682,20 @@
     .notif.show { transform: translateX(0); }
     .notif i { color: #25D366; font-size: 1.2rem; }
 
+    /* ===== 3MK WATERMARK ===== */
+    .watermark-3mk {
+      position: relative; overflow: hidden;
+    }
+    .watermark-3mk::before {
+      content: '3MK';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 8rem; font-weight: 900; color: rgba(201,168,76,0.05);
+      letter-spacing: 2rem; pointer-events: none; z-index: 1;
+      font-family: 'Playfair Display', serif;
+    }
+    .watermark-content { position: relative; z-index: 2; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       nav { display: none; }
@@ -682,6 +790,7 @@
       <a href="#hero" class="active">Accueil</a>
       <a href="#categories">Catégories</a>
       <a href="#boutique">Boutique</a>
+      <a href="#formations">Formations</a>
       <a href="#personnalisation">Perso</a>
       <a href="#about">À propos</a>
       <a href="#contact">Contact</a>
@@ -703,6 +812,7 @@
     <a href="#hero" onclick="closeMobileNav()"><i class="fas fa-home"></i> Accueil</a>
     <a href="#categories" onclick="closeMobileNav()"><i class="fas fa-th"></i> Catégories</a>
     <a href="#boutique" onclick="closeMobileNav()"><i class="fas fa-shopping-bag"></i> Boutique</a>
+    <a href="#formations" onclick="closeMobileNav()"><i class="fas fa-graduation-cap"></i> Formations</a>
     <a href="#personnalisation" onclick="closeMobileNav()"><i class="fas fa-paint-brush"></i> Personnalisation</a>
     <a href="#about" onclick="closeMobileNav()"><i class="fas fa-info-circle"></i> À propos</a>
     <a href="#contact" onclick="closeMobileNav()"><i class="fas fa-envelope"></i> Contact</a>
@@ -710,10 +820,17 @@
   </div>
 </header>
 
+<!-- HEADER CAROUSEL -->
+<div class="header-carousel">
+  <div class="header-carousel-track" id="header-carousel-track">
+    <!-- Products will be added by JavaScript -->
+  </div>
+</div>
+
 <!-- HERO -->
-<section id="hero">
+<section id="hero" class="watermark-3mk">
   <div class="hero-bg-pattern"></div>
-  <div class="hero-content">
+  <div class="hero-content watermark-content">
     <div class="hero-text">
       <div class="hero-badge">✦ Collections Artisanales Africaines</div>
       <h1 class="hero-title">
@@ -829,8 +946,8 @@
 </section>
 
 <!-- BOUTIQUE -->
-<section id="boutique">
-  <div class="boutique-inner">
+<section id="boutique" class="watermark-3mk">
+  <div class="boutique-inner watermark-content">
     <div class="section-header fade-up">
       <div class="section-badge">✦ Boutique</div>
       <h2 class="section-title">Tous nos produits</h2>
@@ -1053,6 +1170,102 @@
   </div>
 </section>
 
+<!-- FORMATIONS -->
+<section id="formations">
+  <div class="section-header fade-up">
+    <div class="section-badge">✦ Formations Artisanales</div>
+    <h2 class="section-title">Apprenez les techniques artisanales</h2>
+    <p class="section-subtitle">Maîtrisez l'art du perlage, du crochet et du tricotage avec nos formations professionnelles.</p>
+    <div class="section-divider"></div>
+  </div>
+  <div class="formations-grid">
+    <div class="formation-card fade-up" style="transition-delay:0.1s">
+      <div class="formation-img">
+        <img src="assets/images/bijoux/BIJ001.jpg" alt="Formation perlage"/>
+        <div class="formation-level">Débutant</div>
+      </div>
+      <div class="formation-content">
+        <h3>📿 Art du Perlage</h3>
+        <p>Apprenez les techniques de perlage traditionnel africain. Créez vos propres bijoux et accessoires.</p>
+        <ul class="formation-points">
+          <li>🎨 Choix et préparation des perles</li>
+          <li>🧵 Techniques de montage</li>
+          <li>💎 Création de motifs</li>
+          <li>✨ Finitions professionnelles</li>
+        </ul>
+        <div class="formation-info">
+          <span class="duration">2 semaines</span>
+          <span class="price">25 000 FCFA</span>
+        </div>
+        <button class="btn-formation" onclick="orderFormation('Perlage')">
+          <i class="fas fa-graduation-cap"></i> S'inscrire
+        </button>
+      </div>
+    </div>
+    
+    <div class="formation-card fade-up" style="transition-delay:0.2s">
+      <div class="formation-img">
+        <img src="assets/images/sacs/SAC018.jpg" alt="Formation crochet"/>
+        <div class="formation-level">Intermédiaire</div>
+      </div>
+      <div class="formation-content">
+        <h3>🧶 Crochet Avancé</h3>
+        <p>Maîtrisez l'art du crochet pour créer sacs, babouches et accessoires modernes.</p>
+        <ul class="formation-points">
+          <li>🪝 Points de base et avancés</li>
+          <li>👜 Création de sacs et pochette</li>
+          <li>👡 Techniques pour babouches</li>
+          <li>🎯 Modèles 3D et volumes</li>
+        </ul>
+        <div class="formation-info">
+          <span class="duration">3 semaines</span>
+          <span class="price">35 000 FCFA</span>
+        </div>
+        <button class="btn-formation" onclick="orderFormation('Crochet')">
+          <i class="fas fa-graduation-cap"></i> S'inscrire
+        </button>
+      </div>
+    </div>
+    
+    <div class="formation-card fade-up" style="transition-delay:0.3s">
+      <div class="formation-img">
+        <img src="assets/images/sacs/SAC016.jpg" alt="Formation tricotage"/>
+        <div class="formation-level">Tous niveaux</div>
+      </div>
+      <div class="formation-content">
+        <h3>🧥 Tricotage Moderne</h3>
+        <p>Découvrez le tricotage adapté au climat africain. Techniques modernes et traditionnelles.</p>
+        <ul class="formation-points">
+          <li>🌿 Matériaux adaptés au climat</li>
+          <li>🎨 Techniques de coloration</li>
+          <li>👕 Création de vêtements légers</li>
+          <li>🏆 Projet final personnalisé</li>
+        </ul>
+        <div class="formation-info">
+          <span class="duration">4 semaines</span>
+          <span class="price">40 000 FCFA</span>
+        </div>
+        <button class="btn-formation" onclick="orderFormation('Tricotage')">
+          <i class="fas fa-graduation-cap"></i> S'inscrire
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div style="text-align:center;margin-top:50px;background:var(--gold-light);border-radius:20px;padding:30px;">
+    <h3 style="color:var(--brown-dark);margin-bottom:15px;font-family:'Playfair Display',serif;">🎓 Formation Complète VIP</h3>
+    <p style="color:var(--text-dark);margin-bottom:20px;">Les 3 formations + accompagnement personnalisé + kit de démarrage</p>
+    <div style="display:flex;justify-content:center;gap:30px;align-items:center;margin-bottom:25px;flex-wrap:wrap;">
+      <span style="font-size:1.8rem;font-weight:800;color:var(--red-dark);">80 000 FCFA</span>
+      <span style="font-size:1rem;color:var(--text-light);text-decoration:line-through;">100 000 FCFA</span>
+      <span style="background:var(--red-dark);color:white;padding:5px15px;border-radius:15px;font-size:0.8rem;font-weight:700;">-20%</span>
+    </div>
+    <button class="btn-primary" onclick="orderFormation('VIP Pack')" style="font-size:1.1rem;padding:16px32px;">
+      <i class="fas fa-crown"></i> Réserver ma place VIP
+    </button>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header fade-up">
@@ -1159,6 +1372,7 @@
       <ul>
         <li><a href="#hero">Accueil</a></li>
         <li><a href="#categories">Catégories</a></li>
+        <li><a href="#formations">🎓 Formations</a></li>
         <li><a href="#personnalisation">Personnalisation</a></li>
         <li><a href="#about">Notre histoire</a></li>
         <li><a href="#videos">Vidéos</a></li>
@@ -1206,21 +1420,21 @@
 // ===== DONNÉES PRODUITS =====
 const products = [
   // SACS
-  { code:'SAC001', name:'Sac Perle Doré', cat:'sacs', img:'assets/images/sacs/SAC001.jpg', desc:'Sac élégant tissé en perles dorées et multicolores. Idéal pour soirées et sorties chics.', tags:['Perles','Personnalisable','Fait Main'], badges:['custom'], featured:true },
+  { code:'SAC001', name:'Sac Crochet Doré', cat:'sacs', img:'assets/images/sacs/SAC001.jpg', desc:'Sac élégant au crochet avec fils dorés. Idéal pour soirées et sorties chics.', tags:['Crochet','Doré','Personnalisable'], badges:['custom'], featured:true },
   { code:'SAC002', name:'Sac Bogolan Heritage', cat:'sacs', img:'assets/images/sacs/SAC002.jpg', desc:'Inspiré du tissu bogolan traditionnel. Un sac qui porte l\'identité africaine.', tags:['Tissu','Bogolan','Africain'], badges:['new'] },
-  { code:'SAC003', name:'Sac Crochet Coloré', cat:'sacs', img:'assets/images/sacs/SAC003.jpg', desc:'Sac en crochet aux couleurs vives. Léger, pratique et tendance.', tags:['Crochet','Coloré','Personnalisable'], badges:['custom','avail'] },
-  { code:'SAC004', name:'Pochette Perle Fine', cat:'sacs', img:'assets/images/sacs/SAC004.jpg', desc:'Pochette délicate ornée de perles fines. Parfaite pour soirées.', tags:['Perles','Pochette','Élégant'], badges:['avail'] },
-  { code:'SAC005', name:'Sac Tressé Laine', cat:'sacs', img:'assets/images/sacs/SAC005.jpg', desc:'Sac tressé en laine naturelle avec motifs géométriques africains.', tags:['Laine','Tressé','Géométrique'], badges:['new','custom'] },
+  { code:'SAC003', name:'Sac Perle Coloré', cat:'sacs', img:'assets/images/sacs/SAC003.jpg', desc:'Sac en perles aux couleurs vives. Léger, pratique et tendance.', tags:['Perles','Coloré','Personnalisable'], badges:['custom','avail'] },
+  { code:'SAC004', name:'Pochette Crochet Fine', cat:'sacs', img:'assets/images/sacs/SAC004.jpg', desc:'Pochette délicate au crochet. Parfaite pour soirées.', tags:['Crochet','Pochette','Élégant'], badges:['avail'] },
+  { code:'SAC005', name:'Sac Crochet Perle', cat:'sacs', img:'assets/images/sacs/SAC005.jpg', desc:'Sac combinant crochet et perles. Design unique avec motifs géométriques africains.', tags:['Crochet','Perles','Mixte'], badges:['new','custom'] },
   { code:'SAC006', name:'Sac Mini Perle Rouge', cat:'sacs', img:'assets/images/sacs/SAC006.jpg', desc:'Mini sac en perles rouges et noires. Tendance et moderne.', tags:['Perles','Mini','Rouge'], badges:['avail'] },
   { code:'SAC007', name:'Grand Sac Artisanal', cat:'sacs', img:'assets/images/sacs/SAC007.jpg', desc:'Grand sac spacieux avec décoration artisanale. Idéal pour quotidien.', tags:['Grand Format','Pratique'], badges:['custom'] },
-  { code:'SAC008', name:'Sac Perle Multicolore', cat:'sacs', img:'assets/images/sacs/SAC008.jpg', desc:'Un festival de couleurs en perles artisanales. Unique et vivant.', tags:['Perles','Multicolore','Unique'], badges:['new'] },
+  { code:'SAC008', name:'Sac Crochet Multicolore', cat:'sacs', img:'assets/images/sacs/SAC008.jpg', desc:'Sac au crochet avec plusieurs couleurs. Style unique et nonocouleur.', tags:['Crochet','Multicolore','Nonocouleur'], badges:['new'] },
   { code:'SAC009', name:'Sac Bandoulière Perle', cat:'sacs', img:'assets/images/sacs/SAC009.jpg', desc:'Sac bandoulière avec chaîne en perles. Pratique et stylé.', tags:['Bandoulière','Perles','Chaîne'], badges:['avail','custom'] },
   { code:'SAC010', name:'Pochette Soirée Or', cat:'sacs', img:'assets/images/sacs/SAC010.jpg', desc:'Pochette de soirée avec broderie en fil doré. Luxe artisanal.', tags:['Soirée','Or','Broderie'], badges:['new'] },
   { code:'SAC011', name:'Sac Raphia Naturel', cat:'sacs', img:'assets/images/sacs/SAC011.jpg', desc:'Sac en raphia naturel avec ornements perles. Écologique et chic.', tags:['Raphia','Naturel','Écologique'], badges:['avail'] },
   { code:'SAC012', name:'Sac Wax Coloré', cat:'sacs', img:'assets/images/sacs/SAC012.jpg', desc:'Sac en tissu wax africain aux couleurs chaudes et vibrantes.', tags:['Wax','Tissu','Africain'], badges:['custom'] },
   { code:'SAC013', name:'Sac Perle Bleu Nuit', cat:'sacs', img:'assets/images/sacs/SAC013.jpg', desc:'Sac élégant en perles bleu nuit et argent pour soirées.', tags:['Perles','Bleu','Soirée'], badges:['avail'] },
   { code:'SAC014', name:'Mini Pochette Festive', cat:'sacs', img:'assets/images/sacs/SAC014.jpg', desc:'Petite pochette festive avec décoration perles brillantes.', tags:['Mini','Fête','Brillant'], badges:['new','custom'] },
-  { code:'SAC015', name:'Sac Bohème Perle', cat:'sacs', img:'assets/images/sacs/SAC015.jpg', desc:'Style bohème avec perles naturelles et broderies artisanales.', tags:['Bohème','Perles','Broderie'], badges:['avail'] },
+  { code:'SAC015', name:'Sac Crochet Naturel', cat:'sacs', img:'assets/images/sacs/SAC015.jpg', desc:'Sac au crochet avec tons naturels. Style bohème authentique.', tags:['Crochet','Naturel','Bohème'], badges:['avail'] },
   { code:'SAC016', name:'Sac Tote Artisanal', cat:'sacs', img:'assets/images/sacs/SAC016.jpg', desc:'Grand tote bag avec motifs artisanaux africains. Spacieux et original.', tags:['Tote','Grand','Artisanal'], badges:['custom'] },
   { code:'SAC017', name:'Sac Perle Pastel', cat:'sacs', img:'assets/images/sacs/SAC017.jpg', desc:'Douceur et élégance avec des perles aux tons pastels tendance.', tags:['Perles','Pastel','Doux'], badges:['new'] },
   { code:'SAC018', name:'Sac Crochet Gold', cat:'sacs', img:'assets/images/sacs/SAC018.jpg', desc:'Sac au crochet avec fils dorés. Allure luxueuse et artisanale.', tags:['Crochet','Gold','Luxe'], badges:['avail','custom'] },
@@ -1239,7 +1453,7 @@ const products = [
   { code:'BIJ007', name:'Bracelet Manchette', cat:'bijoux', img:'assets/images/bijoux/BIJ007.jpg', desc:'Manchette large ornée de perles et broderies. Audacieux et chic.', tags:['Manchette','Audacieux','Broderie'], badges:['custom'] },
   { code:'BIJ008', name:'Collier Ras du Cou', cat:'bijoux', img:'assets/images/bijoux/BIJ008.jpg', desc:'Ras du cou moderne en perles fines. S\'adapte à tous les décolletés.', tags:['Ras du Cou','Fin','Moderne'], badges:['avail'] },
   // BABOUCHES
-  { code:'BAB001', name:'Babouche Crochet Classic', cat:'babouches', img:'assets/images/babouches/BAB001.jpg', desc:'Babouche au crochet dans les tons naturels. Confortable et authentique.', tags:['Crochet','Naturel','Confort'], badges:['avail','custom'] },
+  { code:'BAB001', name:'Babouche Perle Classic', cat:'babouches', img:'assets/images/babouches/BAB001.jpg', desc:'Babouche en perles dans les tons naturels. Confortable et authentique.', tags:['Perles','Naturel','Confort'], badges:['avail','custom'] },
   { code:'BAB002', name:'Babouche Crochet Luxe', cat:'babouches', img:'assets/images/babouches/BAB002.jpg', desc:'Babouche luxe en crochet avec ornements dorés. Le confort avec élégance.', tags:['Luxe','Doré','Crochet'], badges:['new','custom'], featured:true },
   // PARFUMS (images placeholder Unsplash)
   { code:'PAR001', name:'Oud Africain Femme', cat:'parfums', img:'https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80', desc:'Parfum oriental intense à base d\'oud. Notes florales et musquées pour femme.', tags:['Oud','Oriental','Femme'], badges:['avail'] },
@@ -1278,6 +1492,24 @@ Je souhaite commander cet article :
 Merci de me confirmer la disponibilité et le prix 🙏`;
   const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
   showNotif(`Commander : ${name} (${code})`);
+  setTimeout(() => window.open(url, '_blank'), 400);
+}
+
+function orderFormation(formationType) {
+  const message = `Bonjour *House Creation by 3MK* 🎓
+
+Je souhaite m'inscrire à la formation :
+
+*Formation :* ${formationType}
+
+Merci de me donner les informations pratiques :
+📅 Dates disponibles
+📍 Lieu de formation
+📋 Modalités d'inscription
+
+J'attends votre retour 🙏`;
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+  showNotif(`Inscription : ${formationType}`);
   setTimeout(() => window.open(url, '_blank'), 400);
 }
 
@@ -1433,7 +1665,7 @@ function handleScroll() {
   else btn.classList.remove('visible');
 
   // Active nav
-  const sections = ['hero','categories','boutique','personnalisation','about','videos','contact'];
+  const sections = ['hero','categories','boutique','formations','personnalisation','about','videos','contact'];
   const navLinks = document.querySelectorAll('nav a');
   let current = 'hero';
   sections.forEach(id => {
@@ -1462,6 +1694,18 @@ const heroSwiper = new Swiper('.hero-carousel', {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
+  // Populate header carousel
+  const headerTrack = document.getElementById('header-carousel-track');
+  if (headerTrack) {
+    const featuredProducts = products.filter(p => p.featured || Math.random() > 0.7).slice(0, 12);
+    const carouselHTML = featuredProducts.map(p => `
+      <div class="header-carousel-item" onclick="openModal('${p.code}')" title="${p.name}">
+        <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+      </div>
+    `).join('');
+    headerTrack.innerHTML = carouselHTML + carouselHTML; // Duplicate for seamless loop
+  }
+
   // Hide loader
   setTimeout(() => {
     const loader = document.getElementById('loader');
